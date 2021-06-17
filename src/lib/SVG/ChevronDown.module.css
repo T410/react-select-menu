@@ -1,0 +1,6 @@
+.outerContainer {
+	width: var(--s-20);
+	height: var(--s-20);
+	display: flex;
+	margin: 0 var(--s-10) var(--s-5) 0;
+}
