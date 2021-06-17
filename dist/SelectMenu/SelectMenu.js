@@ -9,7 +9,7 @@ var _jsxRuntime = require("react/jsx-runtime");
 
 function SelectMenu() {
   return /*#__PURE__*/(0, _jsxRuntime.jsx)("div", {
-    children: /*#__PURE__*/(0, _jsxRuntime.jsx)("p1", {
+    children: /*#__PURE__*/(0, _jsxRuntime.jsx)("p", {
       children: "Menu"
     })
   });

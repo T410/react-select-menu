@@ -6,7 +6,7 @@
   "dependencies": {},
   "scripts": {
     "start": "react-scripts start",
-    "build": "rm -rf dist && NODE_ENV=production babel lib --out-dir dist --ignore 'lib/**/*.test.js' && cp package.json dist/",
+    "build": "rm -rf dist && NODE_ENV=production babel src/lib --out-dir dist --ignore 'src/lib/**/*.test.js'",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

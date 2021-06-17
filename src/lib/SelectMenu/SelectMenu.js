@@ -1,7 +1,7 @@
 function SelectMenu() {
 	return (
 		<div>
-			<p1>Menu</p1>
+			<p>Menu</p>
 		</div>
 	);
 }
