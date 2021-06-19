@@ -1,9 +1,9 @@
 import style from "./Check.module.css";
 import check from "./check-light.svg";
-function Check() {
+function Check({ isSelected }) {
 	return (
 		<div className={style.outerContainer}>
-			<img src={check} />
+			<img src={check} className={isSelected ? style.visible : style.hidden} />
 		</div>
 	);
 }

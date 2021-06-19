@@ -4,3 +4,10 @@
 	display: flex;
 	margin: 0 var(--s-15);
 }
+.hidden {
+	visibility: hidden;
+}
+
+.visible {
+	visibility: visible;
+}

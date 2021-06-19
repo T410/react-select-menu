@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import style from "./SelectMenu.module.css";
 import ChevronDown from "../SVG/ChevronDown";
 import Check from "../SVG/Check";
-// import Items from "./Items";
 import { mergeClasses, divideByGroupID } from "../helper";
 
 const activeStyles = mergeClasses(style.item, style.activeOuterItem, style.itemActive);
@@ -14,7 +13,7 @@ function Divider() {
 function Item({ option, index, className, onClick, isSelected = false }) {
 	return (
 		<div className={className} onClick={() => onClick({ index, option })}>
-			<Check />
+			<Check isSelected={isSelected} />
 			<p>{option.name}</p>
 		</div>
 	);
@@ -26,6 +25,7 @@ function GroupedItems({ options, onClick, activeIndex }) {
 			<Item
 				option={option}
 				index={option.index}
+				isSelected={option.index === activeIndex}
 				className={option.index === activeIndex ? activeStyles : passiveStyles}
 				onClick={onClick}
 				key={option.index}
