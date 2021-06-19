@@ -73,7 +73,7 @@ function SelectMenu({ options = [], onChange = () => {} }) {
 									activeIndex={activeOptionIndex}
 									key={index}
 								/>
-								<Divider />
+								{dividedOptions[index + 1] && <Divider />}
 							</>
 						);
 					})}
