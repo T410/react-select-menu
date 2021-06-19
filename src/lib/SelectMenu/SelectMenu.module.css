@@ -1,9 +1,9 @@
-.outerContainer {
+.selectOuterContainer {
 	font-weight: var(--medium);
 	width: fit-content;
 }
 
-.select {
+.selectMiddleContainer {
 	font-size: var(--size-2);
 	min-width: 100px;
 	width: fit-content;
@@ -15,14 +15,21 @@
 	flex-direction: row;
 	align-items: center;
 	justify-content: center;
+	cursor: pointer;
 }
 
-.visibleOption {
+.selectInnerContainer {
 	margin: 0 var(--s-15);
 }
 
-.select:hover {
-	cursor: pointer;
+.selectMiddleContainer::after {
+	content: url("../SVG/chevron-down.svg");
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 0 var(--s-10) var(--s-5) 0;
+	width: var(--s-20);
+	height: var(--s-20);
 }
 
 .dropdown {
@@ -42,6 +49,20 @@
 	display: flex;
 	flex-direction: row;
 	align-items: center;
+}
+
+.activeOuterItem::before {
+	content: url("../SVG/check-light.svg");
+	margin: 0 var(--s-15);
+	width: var(--s-20);
+	height: var(--s-20);
+}
+
+.passiveOuterItem:before {
+	content: url("");
+	margin: 0 var(--s-15);
+	width: var(--s-20);
+	height: var(--s-20);
 }
 
 .passiveOuterItem:hover {

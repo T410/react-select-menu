@@ -1,7 +1,5 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import style from "./SelectMenu.module.css";
-import ChevronDown from "../SVG/ChevronDown";
-import Check from "../SVG/Check";
 import { mergeClasses, divideByGroupID } from "../helper";
 
 const activeStyles = mergeClasses(style.item, style.activeOuterItem, style.itemActive);
@@ -10,10 +8,9 @@ function Divider() {
 	return <div className={style.divider}></div>;
 }
 
-function Item({ option, index, className, onClick, isSelected = false }) {
+function Item({ option, index, className, onClick }) {
 	return (
 		<div className={className} onClick={() => onClick({ index, option })}>
-			<Check isSelected={isSelected} />
 			<p>{option.name}</p>
 		</div>
 	);
@@ -49,32 +46,25 @@ function SelectMenu({ options = [], onChange = () => {} }) {
 	};
 
 	const itemClickHandler = ({ index, option }) => {
-		console.log(index);
 		setActiveOptionIndex(index);
 		onChange({ index, option });
 	};
 
 	return (
 		<>
-			<div className={style.outerContainer}>
-				<div className={style.select} onClick={dropdownOpenHandler}>
-					<p className={style.visibleOption}>{defaultOption}</p>
-					<ChevronDown />
+			<div className={style.selectOuterContainer}>
+				<div className={style.selectMiddleContainer} onClick={dropdownOpenHandler}>
+					<p className={style.selectInnerContainer}>{defaultOption}</p>
 				</div>
 			</div>
 			{dropdownVisible ? (
 				<div className={style.dropdown}>
 					{dividedOptions.map((divisions, index) => {
 						return (
-							<>
-								<GroupedItems
-									options={divisions}
-									onClick={itemClickHandler}
-									activeIndex={activeOptionIndex}
-									key={index}
-								/>
+							<React.Fragment key={index}>
+								<GroupedItems options={divisions} onClick={itemClickHandler} activeIndex={activeOptionIndex} />
 								{dividedOptions[index + 1] && <Divider />}
-							</>
+							</React.Fragment>
 						);
 					})}
 				</div>
