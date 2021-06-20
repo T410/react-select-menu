@@ -1,17 +1,231 @@
 "use strict";
 
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
 
+var _react = _interopRequireWildcard(require("react"));
+
+var _SelectMenuModule = _interopRequireDefault(require("./SelectMenu.module.css"));
+
+var _helper = require("../helper");
+
 var _jsxRuntime = require("react/jsx-runtime");
 
-function SelectMenu() {
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+var activeStyles = (0, _helper.mergeClasses)(_SelectMenuModule.default.activeOuterItem, _SelectMenuModule.default.itemActive);
+var passiveStyles = (0, _helper.mergeClasses)(_SelectMenuModule.default.passiveOuterItem);
+
+function Divider() {
   return /*#__PURE__*/(0, _jsxRuntime.jsx)("div", {
-    children: /*#__PURE__*/(0, _jsxRuntime.jsx)("p", {
-      children: "Menu"
+    className: _SelectMenuModule.default.divider
+  });
+}
+
+function SimpleOption(_ref) {
+  var option = _ref.option,
+      className = _ref.className,
+      _onClick = _ref.onClick;
+  return /*#__PURE__*/(0, _jsxRuntime.jsx)("div", {
+    className: (0, _helper.mergeClasses)(_SelectMenuModule.default.simpleItem, className),
+    onClick: function onClick() {
+      return _onClick(option.value);
+    },
+    children: /*#__PURE__*/(0, _jsxRuntime.jsx)("div", {
+      className: _SelectMenuModule.default.itemInner,
+      children: /*#__PURE__*/(0, _jsxRuntime.jsx)("p", {
+        children: option.name
+      })
     })
+  });
+}
+
+function DetailedOption(_ref2) {
+  var option = _ref2.option,
+      className = _ref2.className,
+      _onClick2 = _ref2.onClick;
+  return /*#__PURE__*/(0, _jsxRuntime.jsx)("div", {
+    className: (0, _helper.mergeClasses)(_SelectMenuModule.default.detailedItem, className),
+    onClick: function onClick() {
+      return _onClick2(option.value);
+    },
+    children: /*#__PURE__*/(0, _jsxRuntime.jsx)("div", {
+      className: _SelectMenuModule.default.itemInner,
+      children: /*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
+        className: _SelectMenuModule.default.detailedItemInner,
+        children: [/*#__PURE__*/(0, _jsxRuntime.jsx)("p", {
+          children: option.name
+        }), /*#__PURE__*/(0, _jsxRuntime.jsx)("p", {
+          children: option.description
+        })]
+      })
+    })
+  });
+}
+
+function Option(_ref3) {
+  var option = _ref3.option,
+      isSimple = _ref3.isSimple,
+      className = _ref3.className,
+      onClick = _ref3.onClick;
+  return isSimple ? /*#__PURE__*/(0, _jsxRuntime.jsx)(SimpleOption, {
+    option: option,
+    className: className,
+    onClick: onClick
+  }) : /*#__PURE__*/(0, _jsxRuntime.jsx)(DetailedOption, {
+    option: option,
+    className: className,
+    onClick: onClick
+  });
+} //! TODO change comment explanation
+
+/*
+React Select Menu
+Creates a dropdown & select menu.
+Parameters:
+	options
+		2D Array. When you group items in the inner array those will show up as grouped and will be divided from the others with a horizontal line. 
+		If you want to grouping you can pass all of your items in a signle dimension array.
+
+	defaultIndex
+		Integer. This index decides which parameter to show "using the options array you pass".
+		options will be sorted based on its groupID (see: groupID explanation) but this index will decide the default item before sorting.
+		If you don't pass a defaultIndex value the firstmost element of the firstmost group will be the default item after sorting the options by groupID.
+
+	onChange
+		Function that will be called each time the user selects a new option.
+		If the user selects the same item that's already been selected, this function will not be called.
+		This function will not also be called when the initial render happens.
+		You are free to not pass this param but why would you do that?
+*/
+
+
+var DEFAULT_OPTIONS = [{
+  name: "No Option",
+  value: "noOption",
+  description: "No option passed to the component",
+  groupID: 0
+}];
+
+function SelectMenu(_ref4) {
+  var _ref4$options = _ref4.options,
+      options = _ref4$options === void 0 ? DEFAULT_OPTIONS : _ref4$options,
+      defaultValue = _ref4.defaultValue,
+      _ref4$isSimple = _ref4.isSimple,
+      isSimple = _ref4$isSimple === void 0 ? true : _ref4$isSimple,
+      _ref4$darkMode = _ref4.darkMode,
+      darkMode = _ref4$darkMode === void 0 ? false : _ref4$darkMode,
+      _ref4$maxWidth = _ref4.maxWidth,
+      maxWidth = _ref4$maxWidth === void 0 ? 300 : _ref4$maxWidth,
+      _ref4$onChange = _ref4.onChange,
+      onChange = _ref4$onChange === void 0 ? function () {} : _ref4$onChange;
+  var selectMenuRef = (0, _react.useRef)(null);
+
+  var _useState = (0, _react.useState)([]),
+      _useState2 = _slicedToArray(_useState, 2),
+      sortedOptions = _useState2[0],
+      setSortedOptions = _useState2[1];
+
+  var _useState3 = (0, _react.useState)(false),
+      _useState4 = _slicedToArray(_useState3, 2),
+      dropdownVisible = _useState4[0],
+      setDropdownVisible = _useState4[1];
+
+  var _useState5 = (0, _react.useState)({}),
+      _useState6 = _slicedToArray(_useState5, 2),
+      selectedOption = _useState6[0],
+      setSelectedOption = _useState6[1];
+
+  var clickAwayHandler = function clickAwayHandler(e) {
+    if (selectMenuRef.current) {
+      if (selectMenuRef.current.contains(e.target)) {
+        return;
+      } else {
+        setDropdownVisible(false);
+      }
+    }
+  };
+
+  (0, _react.useEffect)(function () {
+    document.addEventListener("mousedown", clickAwayHandler);
+    return function () {
+      document.removeEventListener("mousedown", clickAwayHandler);
+    };
+  }, []);
+  (0, _react.useEffect)(function () {
+    options && setSortedOptions((0, _helper.sortByGroupID)(options));
+  }, [options]);
+  (0, _react.useEffect)(function () {
+    if (sortedOptions.length > 0) {
+      if (defaultValue) {
+        setSelectedOption((0, _helper.findByValue)(sortedOptions, defaultValue));
+      } else {
+        setSelectedOption(sortedOptions[0]);
+      }
+    }
+  }, [sortedOptions]);
+
+  var dropdownOpenHandler = function dropdownOpenHandler() {
+    setDropdownVisible(!dropdownVisible);
+  };
+
+  var itemClickHandler = function itemClickHandler(value) {
+    if (selectedOption.value !== value) {
+      var foundOption = (0, _helper.findByValue)(sortedOptions, value);
+      setSelectedOption(foundOption);
+      onChange(foundOption);
+    }
+  };
+
+  return /*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
+    ref: selectMenuRef,
+    className: darkMode ? _SelectMenuModule.default.darkMode : _SelectMenuModule.default.lightMode,
+    children: [/*#__PURE__*/(0, _jsxRuntime.jsx)("div", {
+      className: _SelectMenuModule.default.selectOuterContainer,
+      children: /*#__PURE__*/(0, _jsxRuntime.jsx)("div", {
+        className: _SelectMenuModule.default.selectMiddleContainer,
+        onClick: dropdownOpenHandler,
+        children: /*#__PURE__*/(0, _jsxRuntime.jsx)("p", {
+          className: _SelectMenuModule.default.selectInnerContainer,
+          children: (selectedOption === null || selectedOption === void 0 ? void 0 : selectedOption.name) || "Loading..."
+        })
+      })
+    }), dropdownVisible ? /*#__PURE__*/(0, _jsxRuntime.jsx)("div", {
+      className: _SelectMenuModule.default.dropdown,
+      style: {
+        maxWidth: maxWidth
+      },
+      children: sortedOptions === null || sortedOptions === void 0 ? void 0 : sortedOptions.map(function (option, index) {
+        return /*#__PURE__*/(0, _jsxRuntime.jsxs)(_react.default.Fragment, {
+          children: [/*#__PURE__*/(0, _jsxRuntime.jsx)(Option, {
+            option: option,
+            isSimple: isSimple,
+            className: option.value === selectedOption.value ? activeStyles : passiveStyles,
+            onClick: itemClickHandler
+          }), (0, _helper.willGroupIDChange)(sortedOptions, index) && /*#__PURE__*/(0, _jsxRuntime.jsx)(Divider, {})]
+        }, index);
+      })
+    }) : null]
   });
 }
 
