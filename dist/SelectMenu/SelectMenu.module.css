@@ -1,0 +1,178 @@
+* {
+	font-family: -apple-system, "Segoe UI", Roboto, Arial, sans-serif !important;
+	text-align: left !important;
+}
+
+:root {
+	--size-1: 12px;
+	--size-2: 16px;
+
+	--regular: "400";
+	--medium: "500";
+	--bold: "600";
+
+	--s-5: 4px;
+	--s-10: 8px;
+	--s-15: 12px;
+	--s-20: 16px;
+	--s-25: 20px;
+	--s-30: 24px;
+	--s-40: 32px;
+	--s-50: 40px;
+	--s-60: 48px;
+	--s-70: 56px;
+	--s-75: 60px;
+
+	--color-active: #00a3be;
+	--color-active-hover: #05778f;
+
+	--color-light-select: #ffffff;
+	--color-light-passive: #f9fafc;
+	--color-light-passive-hover: #eceef4;
+	--color-light-border: #cdd0e0;
+
+	--color-dark-select: #191d2f;
+	--color-dark-passive: #27293c;
+	--color-dark-passive-hover: #3a3c52;
+	--color-dark-border: #585c77;
+
+	--border-radius: 4px;
+	--box-shadow: 0px 2px 8px 0px #6e749226;
+}
+
+p {
+	margin: 0;
+}
+
+.lightMode {
+	--color-select: var(--color-light-select);
+	--color-passive: var(--color-light-passive);
+	--color-passive-hover: var(--color-light-passive-hover);
+	--color-border: var(--color-light-border);
+	color: black;
+}
+
+.darkMode {
+	--color-select: var(--color-dark-select);
+	--color-passive: var(--color-dark-passive);
+	--color-passive-hover: var(--color-dark-passive-hover);
+	--color-border: var(--color-dark-border);
+	color: white;
+}
+
+.selectOuterContainer {
+	font-weight: var(--medium);
+	width: fit-content;
+}
+
+.selectMiddleContainer {
+	background-color: var(--color-select);
+	font-size: var(--size-2);
+	min-width: 100px;
+	width: fit-content;
+	height: 32px;
+	box-shadow: var(--box-shadow);
+	border: 1px solid var(--color-border);
+	border-radius: var(--border-radius);
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+}
+
+.selectInnerContainer {
+	margin: 0 var(--s-15);
+}
+
+.selectMiddleContainer::after {
+	content: url("../SVG/chevron-down.svg");
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 0 var(--s-10) var(--s-5) 0;
+	width: var(--s-20);
+	height: var(--s-20);
+}
+
+.dropdown {
+	width: fit-content;
+	position: absolute;
+	margin-top: var(--s-5);
+	box-shadow: var(--box-shadow);
+	border: 1px solid var(--color-border);
+	border-radius: var(--border-radius);
+	cursor: pointer;
+	background-color: var(--color-passive);
+}
+
+.simpleItem {
+	width: 100%;
+	height: var(--s-30);
+	margin: var(--s-5) var(--s-20) var(--s-5) 0;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.detailedItem {
+	width: 100%;
+	height: var(--s-75);
+	margin: var(--s-5) var(--s-20) var(--s-5) 0;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.detailedItemInner {
+	display: flex;
+	flex-direction: column;
+	margin-right: var(--s-20);
+}
+
+.detailedItemInner :nth-child(1) {
+	margin-bottom: 2px;
+}
+
+.detailedItemInner :nth-child(2) {
+	font-size: var(--size-1);
+}
+
+.itemInner {
+	display: flex;
+}
+
+.activeOuterItem > .itemInner::before {
+	content: url("../SVG/check-light.svg");
+	align-self: flex-start;
+	margin: 0 var(--s-15);
+	width: var(--s-20);
+	height: var(--s-20);
+}
+
+.passiveOuterItem::before {
+	content: url("../SVG/check-light.svg");
+	visibility: hidden;
+	margin: 0 var(--s-15);
+	width: var(--s-20);
+	height: var(--s-20);
+}
+
+.passiveOuterItem:hover {
+	background-color: var(--color-passive-hover);
+}
+
+.activeOuterItem:hover {
+	background-color: var(--color-active-hover);
+}
+
+.itemActive {
+	background-color: var(--color-active);
+	color: white;
+}
+
+.divider {
+	width: 100%;
+	height: 1px;
+	border-bottom: 1px solid var(--color-border);
+}
