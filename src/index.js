@@ -8,36 +8,33 @@ ReactDOM.render(
 		<SelectMenu
 			options={[
 				{
-					name: "Tayyib",
-					groupID: 2,
-				},
-				{
 					name: "Hopper",
+					value: "hopper",
+					description: "Grace Hopper was an American computer scientist and US Navy rear admiral.",
 					groupID: 0,
 				},
 				{
 					name: "Holberton",
+					value: "holberton",
+					description: "Frances Elizabeth Holberton was one of the programmers of the first computer.",
 					groupID: 0,
 				},
 				{
-					name: "Antonelli",
-					groupID: 1,
-				},
-				{
-					name: "Bartik",
-					groupID: 1,
-				},
-				{
 					name: "Teitelbaum",
+					value: "teitelbaum",
+					description: "Ruth Teitelbaum was one of the first computer programmers in the world",
 					groupID: 1,
 				},
 				{
-					name: "Bartik",
-					groupID: 1,
+					name: "Tayyib",
+					value: "tayyib",
+					description: "Tayyib is the developer of this React select component",
+					groupID: 2,
 				},
 			]}
-			onChange={(index) => {
-				console.log(index);
+			defaultValue={"tayyib"}
+			onChange={(e) => {
+				console.log(e);
 			}}
 		/>
 	</React.StrictMode>,
