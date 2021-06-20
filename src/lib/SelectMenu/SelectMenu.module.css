@@ -1,9 +1,26 @@
+.lightMode {
+	--color-select: var(--color-light-select);
+	--color-passive: var(--color-light-passive);
+	--color-passive-hover: var(--color-light-passive-hover);
+	--color-border: var(--color-light-border);
+	color: black;
+}
+
+.darkMode {
+	--color-select: var(--color-dark-select);
+	--color-passive: var(--color-dark-passive);
+	--color-passive-hover: var(--color-dark-passive-hover);
+	--color-border: var(--color-dark-border);
+	color: white;
+}
+
 .selectOuterContainer {
 	font-weight: var(--medium);
 	width: fit-content;
 }
 
 .selectMiddleContainer {
+	background-color: var(--color-select);
 	font-size: var(--size-2);
 	min-width: 100px;
 	width: fit-content;
@@ -40,6 +57,7 @@
 	border: 1px solid var(--color-border);
 	border-radius: var(--border-radius);
 	cursor: pointer;
+	background-color: var(--color-passive);
 }
 
 .simpleItem {

@@ -68,7 +68,14 @@ const DEFAULT_OPTIONS = [
 		groupID: 0,
 	},
 ];
-function SelectMenu({ options = DEFAULT_OPTIONS, defaultValue, isSimple = true, maxWidth = 300, onChange = () => {} }) {
+function SelectMenu({
+	options = DEFAULT_OPTIONS,
+	defaultValue,
+	isSimple = true,
+	darkMode = false,
+	maxWidth = 300,
+	onChange = () => {},
+}) {
 	const selectMenuRef = useRef(null);
 	const [sortedOptions, setSortedOptions] = useState([]);
 	const [dropdownVisible, setDropdownVisible] = useState(false);
@@ -104,12 +111,7 @@ function SelectMenu({ options = DEFAULT_OPTIONS, defaultValue, isSimple = true, 
 				setSelectedOption(sortedOptions[0]);
 			}
 		}
-		console.log(sortedOptions);
 	}, [sortedOptions]);
-
-	useEffect(() => {
-		console.log(selectedOption);
-	}, [selectedOption]);
 
 	const dropdownOpenHandler = () => {
 		setDropdownVisible(!dropdownVisible);
@@ -124,7 +126,7 @@ function SelectMenu({ options = DEFAULT_OPTIONS, defaultValue, isSimple = true, 
 	};
 
 	return (
-		<div ref={selectMenuRef}>
+		<div ref={selectMenuRef} className={darkMode ? style.darkMode : style.lightMode}>
 			<div className={style.selectOuterContainer}>
 				<div className={style.selectMiddleContainer} onClick={dropdownOpenHandler}>
 					<p className={style.selectInnerContainer}>{selectedOption?.name || "Loading..."}</p>
