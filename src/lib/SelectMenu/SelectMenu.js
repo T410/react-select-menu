@@ -2,17 +2,40 @@ import React, { useEffect, useState, useRef } from "react";
 import style from "./SelectMenu.module.css";
 import { mergeClasses, sortByGroupID, findByValue, willGroupIDChange } from "../helper";
 
-const activeStyles = mergeClasses(style.item, style.activeOuterItem, style.itemActive);
-const passiveStyles = mergeClasses(style.item, style.passiveOuterItem);
+const activeStyles = mergeClasses(style.activeOuterItem, style.itemActive);
+const passiveStyles = mergeClasses(style.passiveOuterItem);
 function Divider() {
 	return <div className={style.divider}></div>;
 }
 
-function Option({ option, className, onClick }) {
+function SimpleOption({ option, className, onClick }) {
 	return (
-		<div className={className} onClick={() => onClick(option.value)}>
-			<p>{option.name}</p>
+		<div className={mergeClasses(style.simpleItem, className)} onClick={() => onClick(option.value)}>
+			<div className={style.itemInner}>
+				<p>{option.name}</p>
+			</div>
 		</div>
+	);
+}
+
+function DetailedOption({ option, className, onClick }) {
+	return (
+		<div className={mergeClasses(style.detailedItem, className)} onClick={() => onClick(option.value)}>
+			<div className={style.itemInner}>
+				<div className={style.detailedItemInner}>
+					<p>{option.name}</p>
+					<p>{option.description}</p>
+				</div>
+			</div>
+		</div>
+	);
+}
+
+function Option({ option, isSimple, className, onClick }) {
+	return isSimple ? (
+		<SimpleOption option={option} className={className} onClick={onClick} />
+	) : (
+		<DetailedOption option={option} className={className} onClick={onClick} />
 	);
 }
 
@@ -45,7 +68,7 @@ const DEFAULT_OPTIONS = [
 		groupID: 0,
 	},
 ];
-function SelectMenu({ options = DEFAULT_OPTIONS, defaultValue, onChange = () => {} }) {
+function SelectMenu({ options = DEFAULT_OPTIONS, defaultValue, isSimple = true, maxWidth = 300, onChange = () => {} }) {
 	const selectMenuRef = useRef(null);
 	const [sortedOptions, setSortedOptions] = useState([]);
 	const [dropdownVisible, setDropdownVisible] = useState(false);
@@ -88,21 +111,6 @@ function SelectMenu({ options = DEFAULT_OPTIONS, defaultValue, onChange = () => 
 		console.log(selectedOption);
 	}, [selectedOption]);
 
-	// useEffect(() => {
-	// 	items ?? setItems(sortArrayByGroupID(fillOriginalIndexes(options)));
-	// 	items && setGroupedItems(divideByGroupID([...items]));
-	// 	console.log(items);
-	// }, [options]);
-
-	// useEffect(() => {
-	// 	groupedItems && setActiveOptionIndex(groupedItems[0][0].index);
-	// }, [groupedItems]);
-
-	// useEffect(() => {
-	// 	console.log(activeOptionIndex);
-	// 	items && console.log(items[activeOptionIndex]);
-	// }, [activeOptionIndex]);
-
 	const dropdownOpenHandler = () => {
 		setDropdownVisible(!dropdownVisible);
 	};
@@ -123,12 +131,13 @@ function SelectMenu({ options = DEFAULT_OPTIONS, defaultValue, onChange = () => 
 				</div>
 			</div>
 			{dropdownVisible ? (
-				<div className={style.dropdown}>
+				<div className={style.dropdown} style={{ maxWidth: maxWidth }}>
 					{sortedOptions?.map((option, index) => {
 						return (
 							<React.Fragment key={index}>
 								<Option
 									option={option}
+									isSimple={isSimple}
 									className={option.value === selectedOption.value ? activeStyles : passiveStyles}
 									onClick={itemClickHandler}
 								/>

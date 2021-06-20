@@ -28,11 +28,19 @@ ReactDOM.render(
 				{
 					name: "Tayyib",
 					value: "tayyib",
-					description: "Tayyib is the developer of this React select component",
+					description: "Hey, it's me!",
 					groupID: 2,
+				},
+				{
+					name: "No Description",
+					value: "noDesc",
+					groupID: 3,
 				},
 			]}
 			defaultValue={"tayyib"}
+			isSimple={true}
+			isDark={true}
+			maxWidth={300}
 			onChange={(e) => {
 				console.log(e);
 			}}

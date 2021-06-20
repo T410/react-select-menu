@@ -42,7 +42,7 @@
 	cursor: pointer;
 }
 
-.item {
+.simpleItem {
 	width: 100%;
 	height: var(--s-30);
 	margin: var(--s-5) var(--s-20) var(--s-5) 0;
@@ -51,15 +51,44 @@
 	align-items: center;
 }
 
-.activeOuterItem::before {
+.detailedItem {
+	width: 100%;
+	height: var(--s-75);
+	margin: var(--s-5) var(--s-20) var(--s-5) 0;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.detailedItemInner {
+	display: flex;
+	flex-direction: column;
+	margin-right: var(--s-20);
+}
+
+.detailedItemInner :nth-child(1) {
+	margin-bottom: 2px;
+}
+
+.detailedItemInner :nth-child(2) {
+	font-size: var(--size-1);
+}
+
+.itemInner {
+	display: flex;
+}
+
+.activeOuterItem > .itemInner::before {
 	content: url("../SVG/check-light.svg");
+	align-self: flex-start;
 	margin: 0 var(--s-15);
 	width: var(--s-20);
 	height: var(--s-20);
 }
 
-.passiveOuterItem:before {
-	content: url("");
+.passiveOuterItem::before {
+	content: url("../SVG/check-light.svg");
+	visibility: hidden;
 	margin: 0 var(--s-15);
 	width: var(--s-20);
 	height: var(--s-20);

@@ -17,6 +17,7 @@
 	--s-50: 40px;
 	--s-60: 48px;
 	--s-70: 56px;
+	--s-75: 60px;
 
 	--color-active: #00a3be;
 	--color-active-hover: #05778f;
@@ -25,4 +26,8 @@
 	--color-border: #cdd0e0;
 	--border-radius: 4px;
 	--box-shadow: 0px 2px 8px 0px #6e749226;
+}
+
+p {
+	margin: 0;
 }
