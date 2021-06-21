@@ -167,6 +167,74 @@ test("should sort array by groupID", () => {
 	expect(sortedArray).toEqual(expectedArray);
 });
 
+test("should give error with poor inputs", () => {
+	const noArray = {
+		name: "Hopper",
+		value: "hopper",
+		description: "Grace Hopper was an American computer scientist and US Navy rear admiral.",
+		groupID: 2,
+	};
+	expect(() => {
+		validateArray(noArray);
+	}).toThrow(TypeError);
+
+	const noName = [
+		{
+			description: "Lorem Ipsum dolor sit amet",
+			groupID: 0,
+		},
+	];
+
+	expect(() => {
+		validateArray(noName);
+	}).toThrow(TypeError);
+
+	const numberDescription = [
+		{
+			name: "Hopper",
+			value: "hopper",
+			description: 2,
+			groupID: 2,
+		},
+	];
+
+	expect(() => {
+		validateArray(numberDescription);
+	}).toThrow(TypeError);
+
+	const stringGroupID = [
+		{
+			name: "Hopper",
+			value: "hopper",
+			description: "Grace Hopper was an American computer scientist and US Navy rear admiral.",
+			groupID: "2",
+		},
+	];
+
+	expect(() => {
+		validateArray(stringGroupID);
+	}).toThrow(TypeError);
+
+	const duplicateValues = [
+		{
+			name: "Hopper",
+			value: "hopper",
+			description: "Grace Hopper was an American computer scientist and US Navy rear admiral.",
+			groupID: 2,
+		},
+		{
+			name: "Teitelbaum",
+			value: "hopper",
+			description: "Ruth Teitelbaum was one of the first computer programmers in the world",
+			groupID: 1,
+		},
+	];
+
+	expect(() => {
+		findByValue(duplicateValues, "hopper");
+	}).toThrow(Error);
+});
+
 test("should detect if the next item of the array will have different groupID than current item", () => {
 	expect(willGroupIDChange(unsortedArray, 0)).toBe(true);
 	expect(willGroupIDChange(unsortedArray, 1)).toBe(true);

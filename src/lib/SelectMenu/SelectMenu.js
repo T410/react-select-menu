@@ -46,8 +46,8 @@ Parameters:
 	options: Array of Objects. Each object takes name, value, description, groupID
 			name: String or Number
 			value: String or Number
-			description: String or Number [optional]
-			groupID: String or Number [optional] I suggest using a Number here
+			description: String [optional]
+			groupID: Number [optional]
 						Options will be visibily divided into groups with a horizontal divider. 
 						The options array will be sorted by the groupID. So if an option has groupID of 0 but has an another option with the groupID of 1, 
 							the option which has the groupID of 0 will be on top of the other option.
