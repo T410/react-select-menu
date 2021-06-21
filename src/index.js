@@ -13,13 +13,13 @@ ReactDOM.render(
 						name: "Hopper",
 						value: "hopper",
 						description: "Grace Hopper was an American computer scientist and US Navy rear admiral.",
-						groupID: 0,
+						groupID: 2,
 					},
 					{
 						name: "Holberton",
 						value: "holberton",
 						description: "Frances Elizabeth Holberton was one of the programmers of the first computer.",
-						groupID: 0,
+						groupID: 2,
 					},
 					{
 						name: "Teitelbaum",
@@ -31,7 +31,7 @@ ReactDOM.render(
 						name: "Tayyib",
 						value: "tayyib",
 						description: "Hey, it's me!",
-						groupID: 2,
+						groupID: 0,
 					},
 					{
 						name: "No Description",

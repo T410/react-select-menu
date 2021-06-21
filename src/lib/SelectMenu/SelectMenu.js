@@ -39,28 +39,57 @@ function Option({ option, isSimple, className, onClick }) {
 	);
 }
 
-//! TODO change comment explanation
 /*
 React Select Menu
 Creates a dropdown & select menu.
 Parameters:
-	options
-		2D Array. When you group items in the inner array those will show up as grouped and will be divided from the others with a horizontal line. 
-		If you want to grouping you can pass all of your items in a signle dimension array.
+	options: Array of Objects. Each object takes name, value, description, groupID
+			name: String or Number
+			value: String or Number
+			description: String or Number [optional]
+			groupID: String or Number [optional] I suggest using a Number here
+						Options will be visibily divided into groups with a horizontal divider. 
+						The options array will be sorted by the groupID. So if an option has groupID of 0 but has an another option with the groupID of 1, 
+							the option which has the groupID of 0 will be on top of the other option.
+			
+		ie: 
+		[
+			{
+				name: "Hopper",
+				value: "hopper",
+				description: "Grace Hopper was an American computer scientist and US Navy rear admiral.",
+				groupID: 0,
+			},
+			{
+				name: "Holberton",
+				value: "holberton",
+				description: "Frances Elizabeth Holberton was one of the programmers of the first computer.",
+				groupID: 1,
+			}
+		]
 
-	defaultIndex
-		Integer. This index decides which parameter to show "using the options array you pass".
-		options will be sorted based on its groupID (see: groupID explanation) but this index will decide the default item before sorting.
-		If you don't pass a defaultIndex value the firstmost element of the firstmost group will be the default item after sorting the options by groupID.
+	defaultValue: String of Number [optional]
+					If no value provided then the first option after sorting the options by the groupID will be the default selected option.
 
-	onChange
-		Function that will be called each time the user selects a new option.
-		If the user selects the same item that's already been selected, this function will not be called.
-		This function will not also be called when the initial render happens.
-		You are free to not pass this param but why would you do that?
+	isSimple: Boolean [optional]
+				If set true then the component will only show names of the options.
+				If set false then the component will show both names and the descriptions of the options.
+				Default is set to true
+
+	maxWidth: Number [optional]
+				Maximum width of the dropdown div
+				Default is set to 300
+
+	darkMode: Boolean [optional]
+				If set true then the component will appear in dark mode.
+				If set false then the component will appear in light mode.
+				Default is set to true
+
+	onChange: Function
+				Returns the selected option object.
 */
 
-const DEFAULT_OPTIONS = [
+const DEFAULT_OPTION = [
 	{
 		name: "No Option",
 		value: "noOption",
@@ -69,7 +98,7 @@ const DEFAULT_OPTIONS = [
 	},
 ];
 function SelectMenu({
-	options = DEFAULT_OPTIONS,
+	options = DEFAULT_OPTION,
 	defaultValue,
 	isSimple = true,
 	darkMode = false,
