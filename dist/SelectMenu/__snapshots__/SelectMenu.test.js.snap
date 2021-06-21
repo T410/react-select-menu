@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Render 1`] = `
+<div
+  className="darkMode"
+>
+  <div
+    className="selectOuterContainer"
+  >
+    <div
+      className="selectMiddleContainer"
+      onClick={[Function]}
+    >
+      <p
+        className="selectInnerContainer"
+      >
+        Loading...
+      </p>
+    </div>
+  </div>
+</div>
+`;

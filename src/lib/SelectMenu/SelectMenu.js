@@ -155,11 +155,12 @@ function SelectMenu({
 	};
 
 	return (
-		<div ref={selectMenuRef} className={darkMode ? style.darkMode : style.lightMode}>
-			<div className={style.selectOuterContainer}>
-				<div className={style.selectMiddleContainer} onClick={dropdownOpenHandler}>
-					<p className={style.selectInnerContainer}>{selectedOption?.name || "Loading..."}</p>
-				</div>
+		<div
+			ref={selectMenuRef}
+			className={mergeClasses(darkMode ? style.darkMode : style.lightMode, style.selectOuterContainer)}
+		>
+			<div className={style.selectMiddleContainer} onClick={dropdownOpenHandler}>
+				<p className={style.selectInnerContainer}>{selectedOption?.name || "Loading..."}</p>
 			</div>
 			{dropdownVisible ? (
 				<div className={style.dropdown} style={{ maxWidth: maxWidth }}>

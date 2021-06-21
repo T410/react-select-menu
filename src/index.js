@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { SelectMenu } from "./lib/index";
 
-const darkMode = false;
+const darkMode = true;
 
 ReactDOM.render(
 	<React.StrictMode>

@@ -1,0 +1,387 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SelectMenu render and functionality mounts SelectMenu withoput any props 1`] = `
+<SelectMenu>
+  <div
+    className="lightMode selectOuterContainer"
+  >
+    <div
+      className="selectMiddleContainer"
+      onClick={[Function]}
+    >
+      <p
+        className="selectInnerContainer"
+      >
+        No Option
+      </p>
+    </div>
+  </div>
+</SelectMenu>
+`;
+
+exports[`SelectMenu render and functionality renders SelectMenu with props 1`] = `
+<SelectMenu
+  darkMode={true}
+  defaultValue="tayyib"
+  isSimple={false}
+  maxWidth={300}
+  options={
+    Array [
+      Object {
+        "description": "Grace Hopper was an American computer scientist and US Navy rear admiral.",
+        "groupID": 2,
+        "name": "Hopper",
+        "value": "hopper",
+      },
+      Object {
+        "description": "Frances Elizabeth Holberton was one of the programmers of the first computer.",
+        "groupID": 2,
+        "name": "Holberton",
+        "value": "holberton",
+      },
+      Object {
+        "description": "Ruth Teitelbaum was one of the first computer programmers in the world",
+        "groupID": 1,
+        "name": "Teitelbaum",
+        "value": "teitelbaum",
+      },
+      Object {
+        "description": "Hey, it's me!",
+        "name": "Tayyib",
+        "value": "tayyib",
+      },
+      Object {
+        "groupID": 3,
+        "name": "No Description",
+        "value": "noDesc",
+      },
+    ]
+  }
+>
+  <div
+    className="darkMode selectOuterContainer"
+  >
+    <div
+      className="selectMiddleContainer"
+      onClick={[Function]}
+    >
+      <p
+        className="selectInnerContainer"
+      >
+        Tayyib
+      </p>
+    </div>
+  </div>
+</SelectMenu>
+`;
+
+exports[`SelectMenu render and functionality shows detailed dropdown 1`] = `
+<SelectMenu
+  darkMode={true}
+  defaultValue="tayyib"
+  isSimple={false}
+  maxWidth={300}
+  options={
+    Array [
+      Object {
+        "description": "Grace Hopper was an American computer scientist and US Navy rear admiral.",
+        "groupID": 2,
+        "name": "Hopper",
+        "value": "hopper",
+      },
+      Object {
+        "description": "Frances Elizabeth Holberton was one of the programmers of the first computer.",
+        "groupID": 2,
+        "name": "Holberton",
+        "value": "holberton",
+      },
+      Object {
+        "description": "Ruth Teitelbaum was one of the first computer programmers in the world",
+        "groupID": 1,
+        "name": "Teitelbaum",
+        "value": "teitelbaum",
+      },
+      Object {
+        "description": "Hey, it's me!",
+        "name": "Tayyib",
+        "value": "tayyib",
+      },
+      Object {
+        "groupID": 3,
+        "name": "No Description",
+        "value": "noDesc",
+      },
+    ]
+  }
+>
+  <div
+    className="darkMode selectOuterContainer"
+  >
+    <div
+      className="selectMiddleContainer"
+      onClick={[Function]}
+    >
+      <p
+        className="selectInnerContainer"
+      >
+        Tayyib
+      </p>
+    </div>
+    <div
+      className="dropdown"
+      style={
+        Object {
+          "maxWidth": 300,
+        }
+      }
+    >
+      <Option
+        className="passiveOuterItem"
+        isSimple={false}
+        onClick={[Function]}
+        option={
+          Object {
+            "description": "Ruth Teitelbaum was one of the first computer programmers in the world",
+            "groupID": 1,
+            "name": "Teitelbaum",
+            "value": "teitelbaum",
+          }
+        }
+      >
+        <DetailedOption
+          className="passiveOuterItem"
+          onClick={[Function]}
+          option={
+            Object {
+              "description": "Ruth Teitelbaum was one of the first computer programmers in the world",
+              "groupID": 1,
+              "name": "Teitelbaum",
+              "value": "teitelbaum",
+            }
+          }
+        >
+          <div
+            className="detailedItem passiveOuterItem"
+            onClick={[Function]}
+          >
+            <div
+              className="itemInner"
+            >
+              <div
+                className="detailedItemInner"
+              >
+                <p>
+                  Teitelbaum
+                </p>
+                <p>
+                  Ruth Teitelbaum was one of the first computer programmers in the world
+                </p>
+              </div>
+            </div>
+          </div>
+        </DetailedOption>
+      </Option>
+      <Divider>
+        <div
+          className="divider"
+        />
+      </Divider>
+      <Option
+        className="passiveOuterItem"
+        isSimple={false}
+        onClick={[Function]}
+        option={
+          Object {
+            "description": "Grace Hopper was an American computer scientist and US Navy rear admiral.",
+            "groupID": 2,
+            "name": "Hopper",
+            "value": "hopper",
+          }
+        }
+      >
+        <DetailedOption
+          className="passiveOuterItem"
+          onClick={[Function]}
+          option={
+            Object {
+              "description": "Grace Hopper was an American computer scientist and US Navy rear admiral.",
+              "groupID": 2,
+              "name": "Hopper",
+              "value": "hopper",
+            }
+          }
+        >
+          <div
+            className="detailedItem passiveOuterItem"
+            onClick={[Function]}
+          >
+            <div
+              className="itemInner"
+            >
+              <div
+                className="detailedItemInner"
+              >
+                <p>
+                  Hopper
+                </p>
+                <p>
+                  Grace Hopper was an American computer scientist and US Navy rear admiral.
+                </p>
+              </div>
+            </div>
+          </div>
+        </DetailedOption>
+      </Option>
+      <Option
+        className="passiveOuterItem"
+        isSimple={false}
+        onClick={[Function]}
+        option={
+          Object {
+            "description": "Frances Elizabeth Holberton was one of the programmers of the first computer.",
+            "groupID": 2,
+            "name": "Holberton",
+            "value": "holberton",
+          }
+        }
+      >
+        <DetailedOption
+          className="passiveOuterItem"
+          onClick={[Function]}
+          option={
+            Object {
+              "description": "Frances Elizabeth Holberton was one of the programmers of the first computer.",
+              "groupID": 2,
+              "name": "Holberton",
+              "value": "holberton",
+            }
+          }
+        >
+          <div
+            className="detailedItem passiveOuterItem"
+            onClick={[Function]}
+          >
+            <div
+              className="itemInner"
+            >
+              <div
+                className="detailedItemInner"
+              >
+                <p>
+                  Holberton
+                </p>
+                <p>
+                  Frances Elizabeth Holberton was one of the programmers of the first computer.
+                </p>
+              </div>
+            </div>
+          </div>
+        </DetailedOption>
+      </Option>
+      <Divider>
+        <div
+          className="divider"
+        />
+      </Divider>
+      <Option
+        className="passiveOuterItem"
+        isSimple={false}
+        onClick={[Function]}
+        option={
+          Object {
+            "groupID": 3,
+            "name": "No Description",
+            "value": "noDesc",
+          }
+        }
+      >
+        <DetailedOption
+          className="passiveOuterItem"
+          onClick={[Function]}
+          option={
+            Object {
+              "groupID": 3,
+              "name": "No Description",
+              "value": "noDesc",
+            }
+          }
+        >
+          <div
+            className="detailedItem passiveOuterItem"
+            onClick={[Function]}
+          >
+            <div
+              className="itemInner"
+            >
+              <div
+                className="detailedItemInner"
+              >
+                <p>
+                  No Description
+                </p>
+                <p />
+              </div>
+            </div>
+          </div>
+        </DetailedOption>
+      </Option>
+      <Divider>
+        <div
+          className="divider"
+        />
+      </Divider>
+      <Option
+        className="activeOuterItem itemActive"
+        isSimple={false}
+        onClick={[Function]}
+        option={
+          Object {
+            "description": "Hey, it's me!",
+            "groupID": Infinity,
+            "name": "Tayyib",
+            "value": "tayyib",
+          }
+        }
+      >
+        <DetailedOption
+          className="activeOuterItem itemActive"
+          onClick={[Function]}
+          option={
+            Object {
+              "description": "Hey, it's me!",
+              "groupID": Infinity,
+              "name": "Tayyib",
+              "value": "tayyib",
+            }
+          }
+        >
+          <div
+            className="detailedItem activeOuterItem itemActive"
+            onClick={[Function]}
+          >
+            <div
+              className="itemInner"
+            >
+              <div
+                className="detailedItemInner"
+              >
+                <p>
+                  Tayyib
+                </p>
+                <p>
+                  Hey, it's me!
+                </p>
+              </div>
+            </div>
+          </div>
+        </DetailedOption>
+      </Option>
+      <Divider>
+        <div
+          className="divider"
+        />
+      </Divider>
+    </div>
+  </div>
+</SelectMenu>
+`;
