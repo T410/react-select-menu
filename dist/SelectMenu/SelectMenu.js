@@ -228,16 +228,13 @@ function SelectMenu(_ref4) {
 
   return /*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
     ref: selectMenuRef,
-    className: darkMode ? _SelectMenuModule.default.darkMode : _SelectMenuModule.default.lightMode,
+    className: (0, _helper.mergeClasses)(darkMode ? _SelectMenuModule.default.darkMode : _SelectMenuModule.default.lightMode, _SelectMenuModule.default.selectOuterContainer),
     children: [/*#__PURE__*/(0, _jsxRuntime.jsx)("div", {
-      className: _SelectMenuModule.default.selectOuterContainer,
-      children: /*#__PURE__*/(0, _jsxRuntime.jsx)("div", {
-        className: _SelectMenuModule.default.selectMiddleContainer,
-        onClick: dropdownOpenHandler,
-        children: /*#__PURE__*/(0, _jsxRuntime.jsx)("p", {
-          className: _SelectMenuModule.default.selectInnerContainer,
-          children: (selectedOption === null || selectedOption === void 0 ? void 0 : selectedOption.name) || "Loading..."
-        })
+      className: _SelectMenuModule.default.selectMiddleContainer,
+      onClick: dropdownOpenHandler,
+      children: /*#__PURE__*/(0, _jsxRuntime.jsx)("p", {
+        className: _SelectMenuModule.default.selectInnerContainer,
+        children: (selectedOption === null || selectedOption === void 0 ? void 0 : selectedOption.name) || "Loading..."
       })
     }), dropdownVisible ? /*#__PURE__*/(0, _jsxRuntime.jsx)("div", {
       className: _SelectMenuModule.default.dropdown,
