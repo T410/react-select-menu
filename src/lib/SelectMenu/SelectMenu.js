@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import style from "./SelectMenu.module.css";
-import { mergeClasses, sortByGroupID, findByValue, willGroupIDChange } from "../helper";
+import { mergeClasses, validateArray, sortByGroupID, findByValue, willGroupIDChange } from "../helper";
 
 const activeStyles = mergeClasses(style.activeOuterItem, style.itemActive);
 const passiveStyles = mergeClasses(style.passiveOuterItem);
@@ -129,7 +129,7 @@ function SelectMenu({
 	}, []);
 
 	useEffect(() => {
-		options && setSortedOptions(sortByGroupID(options));
+		options && setSortedOptions(sortByGroupID(validateArray(options)));
 	}, [options]);
 
 	useEffect(() => {
