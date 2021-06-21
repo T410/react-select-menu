@@ -4,10 +4,10 @@ Yet another React Select Component
 
 # Table Of Contents
 
-- ## [Installation](#installation)
-- ## [GIF](#gif)
-- ## [Usage](#usage)
-- ## [Props](#props)
+- [Installation](#installation)
+- [GIF](#gif)
+- [Usage](#usage)
+- [Props](#props)
 
 # Installation
 
