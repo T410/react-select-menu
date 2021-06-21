@@ -38,7 +38,7 @@ ReactDOM.render(
 						groupID: 3,
 					},
 				]}
-				defaultValue={"tayyib"}
+				defaultValue={"holberton"}
 				isSimple={false}
 				darkMode={darkMode}
 				maxWidth={300}

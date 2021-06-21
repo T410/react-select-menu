@@ -15,7 +15,16 @@ Yet another React Select Component
 
 # GIF
 
+Dark Mode & Detailed View
+
 ![screenshot](darkMode.gif)
+
+<br/>
+<br/>
+
+Light Mode & Simple View
+
+![screenshot](lightMode.gif)
 
 # Usage
 
@@ -56,7 +65,7 @@ function App() {
 						groupID: 3,
 					},
 				]}
-				defaultValue={"holberton"}
+				defaultValue={"teitelbaum"}
 				isSimple={false}
 				darkMode={true}
 				maxWidth={300}
@@ -71,7 +80,12 @@ function App() {
 
 <br/>
 
-You can find an example [here](src/index.js)
+# Example
+
+You can find the example index.js [here](src/index.js)
+To run it on your machine, simply clone this repo <code>git clone https://github.com/T410/react-select-menu.git</code> cd into the directory as such <code>cd react-select-menu</code> and then run <code>npm i</code> to install the dependencies.
+
+Then you can run <code>npm start</code> in the project directory to run the example project. You will see which port the project will run on.
 
 # Props
 
