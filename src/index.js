@@ -31,7 +31,6 @@ ReactDOM.render(
 						name: "Tayyib",
 						value: "tayyib",
 						description: "Hey, it's me!",
-						groupID: 0,
 					},
 					{
 						name: "No Description",

@@ -140,7 +140,7 @@ function SelectMenu({
 				setSelectedOption(sortedOptions[0]);
 			}
 		}
-	}, [sortedOptions]);
+	}, [sortedOptions, defaultValue]);
 
 	const dropdownOpenHandler = () => {
 		setDropdownVisible(!dropdownVisible);
