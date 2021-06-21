@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.mergeClasses = mergeClasses;
-exports.validateAndConvertArray = validateAndConvertArray;
+exports.validateArray = validateArray;
 exports.sortByGroupID = sortByGroupID;
 exports.findByValue = findByValue;
 exports.willGroupIDChange = willGroupIDChange;
@@ -21,6 +21,12 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToAr
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function mergeClasses() {
   var res = [];
 
@@ -34,30 +40,12 @@ function mergeClasses() {
   return res.join(" ");
 }
 
-function groupItems(array) {
-  return array.map(function (innerArray, groupIndex) {
-    var itemCount = 0;
-    return {
-      groupIndex: groupIndex,
-      items: innerArray.map(function (item) {
-        itemCount++;
-        return item;
-      }),
-      itemCount: itemCount
-    };
+function validateArray(array) {
+  return array.map(function (x) {
+    return x.groupID !== undefined ? x : _objectSpread(_objectSpread({}, x), {}, {
+      groupID: Infinity
+    });
   });
-}
-
-function validateAndConvertArray(array) {
-  if (!Array.isArray(array)) {
-    throw new Error("Error: options should be Array");
-  }
-
-  if (!array.length) {
-    throw new Error("Error: options should have at least 1 printable (String or Number) item");
-  }
-
-  return groupItems(array);
 }
 
 function sortByGroupID(array) {
