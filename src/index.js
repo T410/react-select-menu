@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { SelectMenu } from "./lib/index";
 
-const darkMode = false;
+const darkMode = true;
 
 ReactDOM.render(
 	<React.StrictMode>
@@ -13,13 +13,13 @@ ReactDOM.render(
 						name: "Hopper",
 						value: "hopper",
 						description: "Grace Hopper was an American computer scientist and US Navy rear admiral.",
-						groupID: 0,
+						groupID: 2,
 					},
 					{
 						name: "Holberton",
 						value: "holberton",
 						description: "Frances Elizabeth Holberton was one of the programmers of the first computer.",
-						groupID: 0,
+						groupID: 2,
 					},
 					{
 						name: "Teitelbaum",
@@ -31,7 +31,6 @@ ReactDOM.render(
 						name: "Tayyib",
 						value: "tayyib",
 						description: "Hey, it's me!",
-						groupID: 2,
 					},
 					{
 						name: "No Description",

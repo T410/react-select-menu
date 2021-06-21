@@ -1,3 +1,97 @@
+# React Select Menu
+
+Yet another React Select Component
+
+# Table Of Contents
+
+- ## [Installation](#installation)
+- ## [GIF](#gif)
+- ## [Usage](#usage)
+- ## [Props](#props)
+
+# Installation
+
+`npm i github:T410/react-select-menu`
+
+# GIF
+
+![screenshot](darkMode.gif)
+
+# Usage
+
+```js
+import { SelectMenu } from "react-select-menu";
+
+function App() {
+	return (
+		<div>
+			<SelectMenu
+				options={[
+					{
+						name: "Hopper",
+						value: "hopper",
+						description: "Grace Hopper was an American computer scientist and US Navy rear admiral.",
+						groupID: 2,
+					},
+					{
+						name: "Holberton",
+						value: "holberton",
+						description: "Frances Elizabeth Holberton was one of the programmers of the first computer.",
+						groupID: 2,
+					},
+					{
+						name: "Teitelbaum",
+						value: "teitelbaum",
+						description: "Ruth Teitelbaum was one of the first computer programmers in the world",
+						groupID: 1,
+					},
+					{
+						name: "Tayyib",
+						value: "tayyib",
+						description: "Hey, it's me!",
+					},
+					{
+						name: "No Description",
+						value: "noDesc",
+						groupID: 3,
+					},
+				]}
+				defaultValue={"holberton"}
+				isSimple={false}
+				darkMode={true}
+				maxWidth={300}
+				onChange={(e) => {
+					console.log(e);
+				}}
+			/>
+		</div>
+	);
+}
+```
+
+<br/>
+
+You can find an example [here](src/index.js)
+
+# Props
+
+| Name           | Type                                                                                      | Default                                                          | Returns         | Description                                                                                                                                                                           |
+| -------------- | ----------------------------------------------------------------------------------------- | ---------------------------------------------------------------- | --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `options`      | `[{ name: String\|Number, value: String\|Number, description: String, groupID: Number }]` |                                                                  |                 | `name` and `value` are required. If you pass `groupID` then every object that has the same groupID will be visibly grouped together. Note that options will be sorted by the groupID. |
+| `defaultValue` | `String\|Number`                                                                          | `value` of the first option after sorting the options by groupID |                 |                                                                                                                                                                                       |
+| `isSimple`     | `Boolean`                                                                                 | `true`                                                           |                 |                                                                                                                                                                                       |
+| `darkMode`     | `Boolean`                                                                                 | `false`                                                          |                 |                                                                                                                                                                                       |
+| `maxWidth`     | `Number`                                                                                  | `300`                                                            |                 | This is the max-width style of the dropdown window.                                                                                                                                   |
+| `onChange`     | `Function`                                                                                | `()=>{}`                                                         | `option` object | This callback will be called when the user selects "a new option".                                                                                                                    |
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
 # Design System challenge
 
 Welcome to our exercise. During this test, you will be given the challenge to create a Select Menu component from scratch using React.

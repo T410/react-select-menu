@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.mergeClasses = mergeClasses;
-exports.validateAndConvertArray = validateAndConvertArray;
+exports.validateArray = validateArray;
 exports.sortByGroupID = sortByGroupID;
 exports.findByValue = findByValue;
 exports.willGroupIDChange = willGroupIDChange;
@@ -21,6 +21,14 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToAr
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
 function mergeClasses() {
   var res = [];
 
@@ -34,30 +42,35 @@ function mergeClasses() {
   return res.join(" ");
 }
 
-function groupItems(array) {
-  return array.map(function (innerArray, groupIndex) {
-    var itemCount = 0;
-    return {
-      groupIndex: groupIndex,
-      items: innerArray.map(function (item) {
-        itemCount++;
-        return item;
-      }),
-      itemCount: itemCount
-    };
-  });
-}
-
-function validateAndConvertArray(array) {
+function validateArray(array) {
   if (!Array.isArray(array)) {
-    throw new Error("Error: options should be Array");
+    var optionsType = _typeof(array);
+
+    throw new TypeError("options must be \"Array\". Instead got \"".concat(optionsType, "\""));
   }
 
-  if (!array.length) {
-    throw new Error("Error: options should have at least 1 printable (String or Number) item");
-  }
+  array.forEach(function (item) {
+    var keys = Object.keys(item);
 
-  return groupItems(array);
+    if (!keys.includes("name") || !keys.includes("value")) {
+      throw new TypeError("options objects must have \"name\" and \"value\" ".concat(JSON.stringify(item)));
+    }
+
+    if (item.description && typeof item.description === "number") {
+      throw new TypeError("typeof description must be String ".concat(JSON.stringify(item)));
+    }
+
+    if (item.groupID && typeof item.groupID !== "number") {
+      throw new TypeError("typeof groupID must be number ".concat(JSON.stringify(item)));
+    }
+  });
+  var fixedArray = [];
+  fixedArray = array.map(function (x) {
+    return x.groupID !== undefined ? x : _objectSpread(_objectSpread({}, x), {}, {
+      groupID: Infinity
+    });
+  });
+  return fixedArray;
 }
 
 function sortByGroupID(array) {
@@ -67,9 +80,15 @@ function sortByGroupID(array) {
 }
 
 function findByValue(array, value) {
-  return array.find(function (item) {
+  var result = array.filter(function (item) {
     return item.value === value;
   });
+
+  if (result.length !== 1) {
+    throw new Error("options has ".concat(result.length, " objects that their value(s) are \"").concat(value, "\""));
+  }
+
+  return result[0];
 }
 
 function willGroupIDChange(array, index) {

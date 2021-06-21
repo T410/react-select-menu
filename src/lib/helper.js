@@ -6,30 +6,38 @@ function mergeClasses(...args) {
 	return res.join(" ");
 }
 
-function groupItems(array) {
-	return array.map((innerArray, groupIndex) => {
-		let itemCount = 0;
-		return {
-			groupIndex,
-			items: innerArray.map((item) => {
-				itemCount++;
-				return item;
-			}),
-			itemCount,
-		};
-	});
-}
-
-function validateAndConvertArray(array) {
+function validateArray(array) {
 	if (!Array.isArray(array)) {
-		throw new Error("Error: options should be Array");
+		let optionsType = typeof array;
+		throw new TypeError(`options must be "Array". Instead got "${optionsType}"`);
 	}
 
-	if (!array.length) {
-		throw new Error("Error: options should have at least 1 printable (String or Number) item");
-	}
+	array.forEach((item) => {
+		const keys = Object.keys(item);
+		if (!keys.includes("name") || !keys.includes("value")) {
+			throw new TypeError(`options objects must have "name" and "value" ${JSON.stringify(item)}`);
+		}
 
-	return groupItems(array);
+		if (item.description && typeof item.description === "number") {
+			throw new TypeError(`typeof description must be String ${JSON.stringify(item)}`);
+		}
+
+		if (item.groupID && typeof item.groupID !== "number") {
+			throw new TypeError(`typeof groupID must be number ${JSON.stringify(item)}`);
+		}
+	});
+
+	let fixedArray = [];
+	fixedArray = array.map((x) => {
+		return x.groupID !== undefined
+			? x
+			: {
+					...x,
+					groupID: Infinity,
+			  };
+	});
+
+	return fixedArray;
 }
 
 function sortByGroupID(array) {
@@ -37,10 +45,14 @@ function sortByGroupID(array) {
 }
 
 function findByValue(array, value) {
-	return array.find((item) => item.value === value);
+	const result = array.filter((item) => item.value === value);
+	if (result.length !== 1) {
+		throw new Error(`options has ${result.length} objects that their value(s) are "${value}"`);
+	}
+	return result[0];
 }
 
 function willGroupIDChange(array, index) {
 	return array[index].groupID !== array[index + 1]?.groupID;
 }
-export { mergeClasses, validateAndConvertArray, sortByGroupID, findByValue, willGroupIDChange };
+export { mergeClasses, validateArray, sortByGroupID, findByValue, willGroupIDChange };
