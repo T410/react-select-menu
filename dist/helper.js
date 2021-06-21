@@ -27,6 +27,8 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
 function mergeClasses() {
   var res = [];
 
@@ -41,11 +43,34 @@ function mergeClasses() {
 }
 
 function validateArray(array) {
-  return array.map(function (x) {
+  if (!Array.isArray(array)) {
+    var optionsType = _typeof(array);
+
+    throw new TypeError("options must be \"Array\". Instead got \"".concat(optionsType, "\""));
+  }
+
+  array.forEach(function (item) {
+    var keys = Object.keys(item);
+
+    if (!keys.includes("name") || !keys.includes("value")) {
+      throw new TypeError("options objects must have \"name\" and \"value\" ".concat(JSON.stringify(item)));
+    }
+
+    if (item.description && typeof item.description === "number") {
+      throw new TypeError("typeof description must be String ".concat(JSON.stringify(item)));
+    }
+
+    if (item.groupID && typeof item.groupID !== "number") {
+      throw new TypeError("typeof groupID must be number ".concat(JSON.stringify(item)));
+    }
+  });
+  var fixedArray = [];
+  fixedArray = array.map(function (x) {
     return x.groupID !== undefined ? x : _objectSpread(_objectSpread({}, x), {}, {
       groupID: Infinity
     });
   });
+  return fixedArray;
 }
 
 function sortByGroupID(array) {
@@ -55,9 +80,15 @@ function sortByGroupID(array) {
 }
 
 function findByValue(array, value) {
-  return array.find(function (item) {
+  var result = array.filter(function (item) {
     return item.value === value;
   });
+
+  if (result.length !== 1) {
+    throw new Error("options has ".concat(result.length, " objects that their value(s) are \"").concat(value, "\""));
+  }
+
+  return result[0];
 }
 
 function willGroupIDChange(array, index) {
