@@ -1,9 +1,8 @@
-import "jest-enzyme";
-import { configure, render, shallow, mount } from "enzyme";
-import Adapter from "@wojtekmaj/enzyme-adapter-react-17";
-configure({ adapter: new Adapter() });
-import React from "react";
 import SelectMenu from "./SelectMenu";
+import React from "react";
+import { render, fireEvent } from "@testing-library/react";
+import "@testing-library/jest-dom";
+
 const options = [
 	{
 		name: "Hopper",
@@ -34,50 +33,47 @@ const options = [
 		groupID: 3,
 	},
 ];
-describe("SelectMenu render and functionality", () => {
-	it("mounts SelectMenu withoput any props", () => {
-		const wrapper = mount(<SelectMenu />);
-		expect(wrapper).toMatchSnapshot();
+
+describe("test for app", () => {
+	it("renders the closed SelectMenu with no data provided", () => {
+		const { getByText } = render(<SelectMenu />);
+		expect(getByText("No Option"));
 	});
 
-	it("renders SelectMenu with props", () => {
-		const wrapper = mount(
-			<SelectMenu options={options} defaultValue={"tayyib"} isSimple={false} darkMode={true} maxWidth={300} />
-		);
-		expect(wrapper).toMatchSnapshot();
+	it("renders the opened simple SelectMenu with no data provided", () => {
+		const { getByText, getAllByText } = render(<SelectMenu />);
+		fireEvent.click(getByText("No Option"));
+		expect(getAllByText("No Option").length).toEqual(2);
 	});
 
-	it("shows detailed dropdown", () => {
-		const wrapper = mount(
-			<SelectMenu options={options} defaultValue={"tayyib"} isSimple={false} darkMode={true} maxWidth={300} />
-		);
-		wrapper.find("div").at(1).simulate("click");
-		expect(wrapper).toMatchSnapshot();
+	it("renders the opened detailed SelectMenu with no data provided", () => {
+		const { getByText } = render(<SelectMenu isSimple={false} />);
+		fireEvent.click(getByText("No Option"));
+		expect(getByText("No option passed to the component"));
 	});
 
-	it("calls onChange callback", () => {
-		const expectedResult = {
-			name: "Teitelbaum",
-			value: "teitelbaum",
-			description: "Ruth Teitelbaum was one of the first computer programmers in the world",
-			groupID: 1,
-		};
-		let testingResult = {};
-		const onChangeHandler = (e) => {
-			testingResult = e;
-		};
-		const wrapper = mount(
-			<SelectMenu
-				options={options}
-				defaultValue={"tayyib"}
-				isSimple={false}
-				darkMode={true}
-				maxWidth={300}
-				onChange={onChangeHandler}
-			/>
-		);
-		wrapper.find("div").at(1).simulate("click");
-		wrapper.find("DetailedOption").at(0).simulate("click");
-		expect(testingResult).toEqual(expectedResult);
+	it("renders the default item as selected when simple SelectMenu is opened with no data provided", () => {
+		const { getByText, getByTestId } = render(<SelectMenu isSimple={true} />);
+		fireEvent.click(getByText("No Option"));
+		expect(getByTestId("simple-option")).toHaveClass("itemActive");
+	});
+
+	it("renders the default item as selected when detailed SelectMenu is opened with no data provided", () => {
+		const { getByText, getByTestId } = render(<SelectMenu isSimple={false} />);
+		fireEvent.click(getByText("No Option"));
+		expect(getByTestId("detailed-option")).toHaveClass("itemActive");
+	});
+
+	it("renders detailed SelectMenu with options with actions", () => {
+		const { getByText, getByTestId } = render(<SelectMenu isSimple={false} options={options} />);
+		const firstElement = options.sort((a, b) => a.groupID - b.groupID)[0];
+		const initial = getByText(firstElement.name);
+		fireEvent.click(initial);
+		expect(getByText(firstElement.description));
+
+		const target = options.find((x) => !x.groupID);
+		fireEvent.click(getByText(target.name));
+
+		expect(getByTestId("selected-option")).toHaveTextContent(target.name);
 	});
 });

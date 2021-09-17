@@ -10,7 +10,11 @@ function Divider() {
 
 function SimpleOption({ option, className, onClick }) {
 	return (
-		<div className={mergeClasses(style.simpleItem, className)} onClick={() => onClick(option.value)}>
+		<div
+			className={mergeClasses(style.simpleItem, className)}
+			onClick={() => onClick(option.value)}
+			data-testid="simple-option"
+		>
 			<div className={style.itemInner}>
 				<p>{option.name}</p>
 			</div>
@@ -20,7 +24,11 @@ function SimpleOption({ option, className, onClick }) {
 
 function DetailedOption({ option, className, onClick }) {
 	return (
-		<div className={mergeClasses(style.detailedItem, className)} onClick={() => onClick(option.value)}>
+		<div
+			className={mergeClasses(style.detailedItem, className)}
+			onClick={() => onClick(option.value)}
+			data-testid="detailed-option"
+		>
 			<div className={style.itemInner}>
 				<div className={style.detailedItemInner}>
 					<p>{option.name}</p>
@@ -160,7 +168,9 @@ function SelectMenu({
 			className={mergeClasses(darkMode ? style.darkMode : style.lightMode, style.selectOuterContainer)}
 		>
 			<div className={style.selectMiddleContainer} onClick={dropdownOpenHandler}>
-				<p className={style.selectInnerContainer}>{selectedOption?.name || "Loading..."}</p>
+				<p className={style.selectInnerContainer} data-testid="selected-option">
+					{selectedOption?.name || "Loading..."}
+				</p>
 			</div>
 			{dropdownVisible ? (
 				<div className={style.dropdown} style={{ maxWidth: maxWidth }}>
