@@ -51,6 +51,7 @@ function SimpleOption(_ref) {
     onClick: function onClick() {
       return _onClick(option.value);
     },
+    "data-testid": "simple-option",
     children: /*#__PURE__*/(0, _jsxRuntime.jsx)("div", {
       className: _SelectMenuModule.default.itemInner,
       children: /*#__PURE__*/(0, _jsxRuntime.jsx)("p", {
@@ -69,6 +70,7 @@ function DetailedOption(_ref2) {
     onClick: function onClick() {
       return _onClick2(option.value);
     },
+    "data-testid": "detailed-option",
     children: /*#__PURE__*/(0, _jsxRuntime.jsx)("div", {
       className: _SelectMenuModule.default.itemInner,
       children: /*#__PURE__*/(0, _jsxRuntime.jsxs)("div", {
@@ -234,6 +236,7 @@ function SelectMenu(_ref4) {
       onClick: dropdownOpenHandler,
       children: /*#__PURE__*/(0, _jsxRuntime.jsx)("p", {
         className: _SelectMenuModule.default.selectInnerContainer,
+        "data-testid": "selected-option",
         children: (selectedOption === null || selectedOption === void 0 ? void 0 : selectedOption.name) || "Loading..."
       })
     }), dropdownVisible ? /*#__PURE__*/(0, _jsxRuntime.jsx)("div", {
