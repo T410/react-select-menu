@@ -1,5 +1,5 @@
 {
-  "name": "react-select-menu",
+  "name": "@t410/react-select-menu",
   "version": "1.3.0",
   "private": false,
   "main": "dist/index.js",
