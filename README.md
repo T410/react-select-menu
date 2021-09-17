@@ -17,65 +17,59 @@ Yet another React Select Component
 
 Dark Mode & Detailed View
 
-![screenshot](darkMode.gif)
+![screenshot](https://raw.githubusercontent.com/T410/react-select-menu/main/darkMode.gif)
 
 <br/>
 <br/>
 
 Light Mode & Simple View
 
-![screenshot](lightMode.gif)
+![screenshot](https://raw.githubusercontent.com/T410/react-select-menu/main/lightMode.gif)
 
 # Usage
 
-```js
+```jsx
 import { SelectMenu } from "react-select-menu";
 
-function App() {
-	return (
-		<div>
-			<SelectMenu
-				options={[
-					{
-						name: "Hopper",
-						value: "hopper",
-						description: "Grace Hopper was an American computer scientist and US Navy rear admiral.",
-						groupID: 2,
-					},
-					{
-						name: "Holberton",
-						value: "holberton",
-						description: "Frances Elizabeth Holberton was one of the programmers of the first computer.",
-						groupID: 2,
-					},
-					{
-						name: "Teitelbaum",
-						value: "teitelbaum",
-						description: "Ruth Teitelbaum was one of the first computer programmers in the world",
-						groupID: 1,
-					},
-					{
-						name: "Tayyib",
-						value: "tayyib",
-						description: "Hey, it's me!",
-					},
-					{
-						name: "No Description",
-						value: "noDesc",
-						groupID: 3,
-					},
-				]}
-				defaultValue={"teitelbaum"}
-				isSimple={false}
-				darkMode={true}
-				maxWidth={300}
-				onChange={(e) => {
-					console.log(e);
-				}}
-			/>
-		</div>
-	);
-}
+<SelectMenu
+	options={[
+		{
+			name: "Hopper",
+			value: "hopper",
+			description: "Grace Hopper was an American computer scientist and US Navy rear admiral.",
+			groupID: 2,
+		},
+		{
+			name: "Holberton",
+			value: "holberton",
+			description: "Frances Elizabeth Holberton was one of the programmers of the first computer.",
+			groupID: 2,
+		},
+		{
+			name: "Teitelbaum",
+			value: "teitelbaum",
+			description: "Ruth Teitelbaum was one of the first computer programmers in the world",
+			groupID: 1,
+		},
+		{
+			name: "Tayyib",
+			value: "tayyib",
+			description: "Hey, it's me!",
+		},
+		{
+			name: "No Description",
+			value: "noDesc",
+			groupID: 3,
+		},
+	]}
+	defaultValue={"teitelbaum"}
+	isSimple={false}
+	darkMode={true}
+	maxWidth={300}
+	onChange={(e) => {
+		console.log(e);
+	}}
+/>;
 ```
 
 <br/>
